@@ -7,8 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    <RelativePanel x:Name="BackgroundPanel" HorizontalAlignment="Center" Height="1000" Margin="0,0,0,0" VerticalAlignment="Center" Width="1497">
+        <TextBlock x:Name="TBEuro" HorizontalAlignment="Left" Height="85" Margin="560,154,0,0" Text="Montant en Euros" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" SelectionChanged="TextBlock_SelectionChanged" FontSize="48"/>
+        <TextBlock x:Name="TBResult" HorizontalAlignment="Left" Height="85" Margin="548,684,0,0" Text="Montant en Devise" TextWrapping="Wrap" VerticalAlignment="Top" Width="419" SelectionChanged="TextBlock_SelectionChanged" FontSize="48"/>
+        <TextBlock x:Name="TBDevise" HorizontalAlignment="Left" Height="85" Margin="679,337,0,0" Text="Devise" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" SelectionChanged="TextBlock_SelectionChanged" FontSize="48"/>
+        <ComboBox x:Name="CBDevise" HorizontalAlignment="Left" Height="74" Margin="493,426,0,0" VerticalAlignment="Top" Width="511" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding}" SelectedValuePath="Id" DisplayMemberPath="NomDevise"/>
+        <TextBox x:Name="TBoEuro" HorizontalAlignment="Left" Height="80" Margin="504,252,0,0" Text="" VerticalAlignment="Top" Width="500" InputScope="Digits" TextChanged="TBoEuro_TextChanged"/>
+        <TextBox x:Name="TBoResult" HorizontalAlignment="Left" Height="80" Margin="498,768,0,0" Text="" VerticalAlignment="Top" Width="500" IsReadOnly="True"/>
+        <Button x:Name="BtConvert" Content="Convertir" HorizontalAlignment="Left" Height="84" Margin="567,557,0,0" VerticalAlignment="Top" Width="374" Click="BtConvert_Click"/>
+    </RelativePanel>
 </Page>

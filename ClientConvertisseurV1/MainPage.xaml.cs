@@ -42,8 +42,17 @@ namespace ClientConvertisseurV1
         private async void ActionGetData()
         {
             WSService Service = WSService.GetInstance();
-            var result = await Service.GetAllDeviseAsync();
-            this.CBDevise.DataContext = new List<Devise>(result);
+            try
+            {
+                var result = await Service.GetAllDeviseAsync();
+                this.CBDevise.DataContext = new List<Devise>(result);
+            }
+            catch(Exception e)
+            {
+                MessageDialog dialog = new MessageDialog("Une erreur est survenu en essayant de recupérer les données du serveur");
+                await dialog.ShowAsync();
+            }
+           
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

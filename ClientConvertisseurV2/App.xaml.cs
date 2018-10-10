@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientConvertisseurV2.View;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace ClientConvertisseurV2
                 }
 
                 // Placez le frame dans la fenêtre active
-                Window.Current.Content = rootFrame;
+                Window.Current.Content = new RootPage(rootFrame);
             }
 
             if (e.PrelaunchActivated == false)
@@ -66,7 +67,7 @@ namespace ClientConvertisseurV2
                     // Quand la pile de navigation n'est pas restaurée, accédez à la première page,
                     // puis configurez la nouvelle page en transmettant les informations requises en tant que
                     // paramètre
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(View.RootPage), e.Arguments);
                 }
                 // Vérifiez que la fenêtre actuelle est active
                 Window.Current.Activate();

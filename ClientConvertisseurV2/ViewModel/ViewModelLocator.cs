@@ -22,11 +22,14 @@ namespace ClientConvertisseurV2.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
-        } 
+            SimpleIoc.Default.Register<SecondViewModel>();
+        }
 
         /// <summary>         
         /// Gets the Main property.  
         /// </summary>         
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>(); 
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        public SecondViewModel Second => ServiceLocator.Current.GetInstance<SecondViewModel>();
     } 
 } 

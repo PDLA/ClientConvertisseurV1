@@ -12,9 +12,9 @@
         <TextBlock x:Name="TBEuro" HorizontalAlignment="Left" Height="85" Margin="560,154,0,0" Text="Montant en Euros" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" FontSize="48"/>
         <TextBlock x:Name="TBResult" HorizontalAlignment="Left" Height="85" Margin="548,684,0,0" Text="Montant en Devise" TextWrapping="Wrap" VerticalAlignment="Top" Width="419" FontSize="48"/>
         <TextBlock x:Name="TBDevise" HorizontalAlignment="Left" Height="85" Margin="679,337,0,0" Text="Devise" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" FontSize="48"/>
-        <ComboBox x:Name="CBDevise" HorizontalAlignment="Left" Height="74" Margin="493,426,0,0" VerticalAlignment="Top" Width="511" ItemsSource="{Binding ComboBoxDevises}" SelectedValuePath="Id" DisplayMemberPath="NomDevise"/>
-        <TextBox x:Name="TBoEuro" HorizontalAlignment="Left" Height="80" Margin="504,252,0,0" Text="" VerticalAlignment="Top" Width="500" InputScope="Digits" />
-        <TextBox x:Name="TBoResult" HorizontalAlignment="Left" Height="80" Margin="498,768,0,0" Text="" VerticalAlignment="Top" Width="500" IsReadOnly="True"/>
-        <Button x:Name="BtConvert" Content="Convertir" HorizontalAlignment="Left" Height="84" Margin="567,557,0,0" VerticalAlignment="Top" Width="374" />
+        <ComboBox x:Name="CBDevise" HorizontalAlignment="Left" Height="74" Margin="493,426,0,0" VerticalAlignment="Top" Width="511" ItemsSource="{Binding ComboBoxDevises}" SelectedValuePath="Id" DisplayMemberPath="NomDevise" SelectedItem="{Binding ComboBoxDeviseItem, Mode=TwoWay}"/>
+        <TextBox x:Name="TBoEuro" HorizontalAlignment="Left" Height="80" Margin="504,252,0,0" VerticalAlignment="Top" Width="500" InputScope="Digits"  Text="{Binding MontantEuros, Mode=TwoWay}"/>
+        <TextBox x:Name="TBoResult" HorizontalAlignment="Left" Height="80" Margin="498,768,0,0" VerticalAlignment="Top" Width="500" IsReadOnly="True" Text="{Binding ConvertedValue}"/>
+        <Button x:Name="BtConvert" Content="Convertir" HorizontalAlignment="Left" Height="84" Margin="567,557,0,0" VerticalAlignment="Top" Width="374" Command="{Binding BtnSetConversion}"/>
     </RelativePanel>
 </Page>

@@ -14,9 +14,9 @@ using Windows.UI.Popups;
 
 namespace ClientConvertisseurV2.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class SecondViewModel : ViewModelBase
     {
-        public MainViewModel()
+        public SecondViewModel()
         {
             ActionGetData();
             BtnSetConversion = new RelayCommand(ActionSetConversion);
@@ -54,7 +54,7 @@ namespace ClientConvertisseurV2.ViewModel
         private async void ActionSetConversion()
         {
             double value = 0;
-            bool success = double.TryParse(MontantEuros, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
+            bool success = double.TryParse(MontantDevise, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
             if (!success)
             {
                 MessageDialog dialog = new MessageDialog("Montant non valide !");
@@ -73,13 +73,13 @@ namespace ClientConvertisseurV2.ViewModel
             ConvertedValue = value;
         }
 
-        private string _montantEuros;
-        public string MontantEuros {
+        private string _montantDevises;
+        public string MontantDevise {
             get {
-                return _montantEuros;
+                return _montantDevises;
             }
             set {
-                _montantEuros = value;
+                _montantDevises = value;
                 RaisePropertyChanged();
             }
         }

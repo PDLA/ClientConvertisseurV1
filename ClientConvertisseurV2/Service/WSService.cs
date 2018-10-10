@@ -19,7 +19,7 @@ namespace ClientConvertisseurV2.Service
         private WSService()
         {
             // Update port # in the following line.
-            client.BaseAddress = new Uri("http://localhost:1749/api/");
+            client.BaseAddress = new Uri("http://localhost:1646/api/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

@@ -1,5 +1,4 @@
-﻿using ClientConvertisseurV1.Controller;
-using ClientConvertisseurV1.Model;
+﻿using ClientConvertisseurV1.Model;
 using ClientConvertisseurV1.Service;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -27,6 +27,12 @@ namespace ClientConvertisseurV1
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        public Devise SelectedDevise { get; set; }
+
+        public string Montant { get; set; }
+
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -42,7 +48,7 @@ namespace ClientConvertisseurV1
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cmb = sender as ComboBox;
-            ConvertisseurController.GetInstance().SelectedDevise = cmb.SelectedItem as Devise;
+            SelectedDevise = cmb.SelectedItem as Devise;
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
@@ -50,9 +56,9 @@ namespace ClientConvertisseurV1
             throw new NotImplementedException();
         }
 
-        private void BtConvert_Click(object sender, RoutedEventArgs e)
+        private async void BtConvert_Click(object sender, RoutedEventArgs e)
         {
-            double result = ConvertisseurController.GetInstance().Convert().Result;
+            double result = await Convert();
             TBoResult.Text = result.ToString();
         }
 
@@ -60,7 +66,28 @@ namespace ClientConvertisseurV1
         {
             TextBox txtb = sender as TextBox;
             string text = txtb.Text.Replace(',', '.');
-            ConvertisseurController.GetInstance().Montant = text;
+            Montant = text;
+        }
+
+        public async Task<double> Convert()
+        {
+            double value = 0;
+            bool success = double.TryParse(Montant, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
+            if (!success)
+            {
+                MessageDialog dialog = new MessageDialog("Montant non valide !");
+                await dialog.ShowAsync();
+            }
+            else if (SelectedDevise == null)
+            {
+                MessageDialog dialog = new MessageDialog("Aucune devise sélectionnée !");
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                value = value * SelectedDevise.Taux;
+            }
+            return value;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientConvertisseurV2.Model
 {
-    class Devise
+    public class Devise
     {
         public int Id { get; set; }
 
